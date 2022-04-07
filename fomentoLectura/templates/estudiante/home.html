@@ -1,0 +1,79 @@
+{% extends "estudiante/base.html" %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'estudiante/css/dashboard.css' %}">
+    <link rel="stylesheet" href="{% static 'estudiante/css/barra_busqueda.css' %}">
+    
+</head>
+
+<body>
+ 
+    {% block content %}
+
+    <div class="container-fluid">    
+        <section class="search-and-user">
+
+            <form action="{% url 'buscar' %}" method="post" >
+                {% csrf_token %}
+                    <input style="color: black;" type="search" name="buscar" placeholder="Buscar lectura...">
+                
+                    <button type="submit" aria-label="submit form" > 
+                      <svg aria-hidden="true">
+                        <use xlink:href="#search"></use>
+                      </svg>
+                    </button>  
+            </form>
+          <div class="admin-profile">
+            <span class="greeting">Hola {{user.get_full_name}} </span>
+            <a href="{% url 'logout' %}" class="btn btn-dark">Cerrar sesión</a>
+          </div>
+        </section>
+   
+
+        <div class="row">
+            <main class="main col">
+                <div class="row justify-content-center align-content-center text-center">
+                    <div class="columna col-lg-6">
+                        <h3>Lecturas</h3> 
+                     </div>
+                    <!--visualizar las lecturas que esta disponibles-->
+                    <div class="container" >
+                        <div class="row">
+                        
+                            {% for lectura in lecturas %}
+                        
+                            <div class="col-md-3">
+                                <div class="card" style="width:90%; margin:5px 5px;">
+                                    <a href="{% url 'documento_pdf' lectura.id %}" >
+                                        <div class="card-body" style="text-align:center;">                            
+                                            <div class="" style="text-align: center;">
+                                                <img src="{{lectura.portada.url}}" style=" max-width: 100%; width: 200px; height: 250px; " >
+                                            </div>
+                                            <p class="card-title"><small> Titulo: {{lectura.titulo}} </small></p>
+                                            <p  class="card-text"><small> categoria: {{lectura.categoria}} </small> </p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        {% include "estudiante/paginacion.html" %}
+                    </div>
+                    <!-- fin del visualiza lecturas-->
+                </div>
+            </main>
+        </div>
+    </div>
+
+    {% endblock %}
+
+    <script class="cssdeck" src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+</body>
+</html>

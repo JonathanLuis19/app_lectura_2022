@@ -1,0 +1,58 @@
+{% extends "estudiante/base.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comentario</title>
+</head>
+<body>
+    
+  {% block content %}
+
+ <h3> {{comentario.lectura.titulo}} </h3>
+  <br/>
+<div class="container">  
+
+  {% if comentario.user.id == user.id %}
+  <form action="{% url 'update_comentario' %}" method="post">
+    {% csrf_token %}
+    <!-- Mensaje -->
+    {% if messages %}
+      <ul class="messages">
+        {% for message in messages %}
+          <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+    <!--fin del Mensaje -->
+    
+    <input type="hidden" value="{{comentario.user.id}}" name="id_user" >
+    <input type="hidden" value="{{user.id}}" name="id_comentario_user" >
+    <input type="hidden" value="{{comentario.id}}" name="id_comentario">
+    <input type="hidden" value="{{comentario.lectura.id}}" name="id_lectura">
+    
+    <label>Tu comentario es: </label><br/>
+    <textarea name="comentario" class="form-control" > {{comentario}}</textarea>
+
+   
+
+<br/>
+
+    <input type="submit"   class="btn btn-success" value="Actualizar">
+
+  </form>
+  {%  else %}
+
+  <label>A usted no le pertenece este comentario: </label><br/>
+  {% endif %}
+
+
+</div>
+
+{% endblock %}
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,600|Open+Sans" rel="stylesheet"> 
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
+	<link rel="stylesheet" href="{% static 'estudiante/pantalla_emergente/estilos.css' %}">
+    <link rel="stylesheet" href="{% static 'estudiante/temporizador/css_temp.css' %}">
+    
+    <title>Lectura</title>
+</head>
+<body>
+    
+<div class="container">
+    <table class="table table-striped" >
+        <thead>
+            <tr>
+                <th colspan="2" class="text-center">
+                    Opciones para el análisis de la lectura        
+                </th>
+            </tr>
+            <tr>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-mic" viewBox="0 0 16 16">
+                    <path d="M3.5 6.5A.5.5 0 0 1 4 7v1a4 4 0 0 0 8 0V7a.5.5 0 0 1 1 0v1a5 5 0 0 1-4.5 4.975V15h3a.5.5 0 0 1 0 1h-7a.5.5 0 0 1 0-1h3v-2.025A5 5 0 0 1 3 8V7a.5.5 0 0 1 .5-.5z"/>
+                    <path d="M10 8a2 2 0 1 1-4 0V3a2 2 0 1 1 4 0v5zM8 0a3 3 0 0 0-3 3v5a3 3 0 0 0 6 0V3a3 3 0 0 0-3-3z"/>
+                </svg>
+                <a class="mic"> </a>
+                <th  colspan="2" class="text-left">Lectura rápida </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="text-center">
+                <td>
+                    Micrófono:
+                </td>
+                <td>    
+                    <form  action="{% url 'cantidad_palabras' %}" method="post" >
+                        {% csrf_token %}
+                        <input type="hidden" value="{{user.id}}" name="usuario">
+                        <input type="hidden" value="{{lectura.id}}" name="id_lectura">
+                        <input type="submit" value="Activar" class="btn btn-info" name="btnEnviar"  id="btn_iniciar" onClick="this.disabled=false"> 
+                    </form>
+                    <br/>
+                   
+                    <div class="item html" >
+                                    
+                        <h2 style="text-align:center;position: absolute;line-height: 125px;width: 100%;">0</h2>
+                        <svg width="160" height="160" xmlns="http://www.w3.org/2000/svg">
+                        <g>
+                            <circle id="circle" class="circle_animation" r="69.85699" cy="81" cx="81" stroke-width="10" stroke="#6fdb6f" fill="none"/>
+                        </g>
+                        </svg>
+                                    
+                    </div>
+
+                </td>
+            </tr>
+            <tr>
+                <th colspan="2"  > 
+                    
+                
+                </th>
+            </tr>
+            <tr class="text-center">
+                <td>
+                    Nº Palabras:
+                </td>
+                <td>
+                    <input type="text" value="{{cantidad_palabras}}" disabled>
+                </td>
+            </tr>
+            <tr>
+                <th  colspan="2" class="text-left"> </th>
+            </tr>
+        <tr>
+            <th  colspan="2" class="text-left">Interpretación </th>
+        </tr>
+        <td colspan="2" class="text-center"> 
+            <button id="btn-abrir-popup" class="btn-abrir-popup btn btn-info">Interpretación</button>
+        </td>
+        <tr>
+            <td >Resultado: </td>
+            <td rowspan="3" > </td>
+        </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="2">
+                    <div style="text-align: right; color: rgb(44, 44, 117);">
+                        {{mensaje}}
+                    
+                    </div>    
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <div style="text-align: right; color: cornflowerblue;">
+                        <a class="" href="{% url 'instrucciones' %}">Instrucciones</a>
+                    
+                    </div>    
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+
+    <!--pantalla emergente-->
+    <div class="overlay" id="overlay">
+        <div class="popup" id="popup">
+            <a href="#" id="btn-cerrar-popup" class="btn-cerrar-popup"><i class="fas fa-times"></i></a>
+            <h3>Comprensión de la lectura</h3>
+            <h4>¿Ingrese lo que entendió de la lectura "{{lectura.titulo}}" ?</h4>
+            <form action="{% url 'interpretacion' %}" method="post">
+                {% csrf_token %}
+            
+                <input type="hidden" value="{{cantidad_palabras}}" name="numero_palabras">
+                <input type="hidden" value="{{texto}}" name="text_base">
+                <input type="hidden" value="{{lectura.id}}" name="id_lectura">
+                
+                <textarea rows="5" style="width: 100%;" name="text_analisis" > </textarea>
+                
+                <input type="submit" class="btn-submit" value="Aceptar">
+            </form>
+        </div>
+    </div>
+
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="{% static 'estudiante/pantalla_emergente/popup.js' %}"></script>
+    <!-- Script del temporizador -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script>
+        var btn=document.getElementById('btn_iniciar') ;
+        var contador=0;
+        function cambio(){
+            if (contador==0){
+                //tiempo de ejecucion del micrfono
+                var time = 60; /* how long the timer will run (seconds) */
+                var initialOffset = '440';
+                var i = 1
+               
+                /* Need initial run as interval hasn't yet occured... */
+                $('.circle_animation').css('stroke-dashoffset', initialOffset-(1*(initialOffset/time)));
+                var interval = setInterval(function() {
+                    $('h2').text(i);
+                    if (i == time) {          
+                    clearInterval(interval);
+                    
+                    return;
+                    }
+                    $('.circle_animation').css('stroke-dashoffset', initialOffset-((i+1)*(initialOffset/time)));
+                    i++;  
+                    
+                }, 1000); 
+            }else{
+                    contador=0;
+                }
+            }
+        btn.addEventListener("click",cambio,true)
+    </script>
+
+    </body>
+    </html>
+    
+    

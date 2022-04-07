@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- para cargar todos los contenidos  -->
+  {% load static %}
+  <!-- Bootstrap -->
+  <link href="{% static 'estudiante/estudiante_lectura/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+   <!-- Fonts -->
+   <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap" rel="stylesheet"> 
+   <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet">
+  <!-- Styles -->
+  <link href="{% static 'estudiante/css/gestion.css' %}" rel="stylesheet">
+  <!-- Styles login-->
+  <link href="{% static 'estudiante/css/login.css' %}" rel="stylesheet">
+<title>Recuperar contraseña</title>
+</head>
+<body>
+    
+<div class="body">
+</div>
+    <div class="grad"></div>
+        <div class="header">
+            <div >Te hemos enviado un correo con un enlace<br/><span>para restablecer tu contraseña </span></div>
+        </div>
+        <br>  
+    <div class="login">
+       <form action="#" method="POST">
+        {% csrf_token %}                                     
+            <input type="submit" class="btn btn-dark" value="Volver">    
+        </form>
+        <br/>
+    </div>   
+
+</body>
+</html>

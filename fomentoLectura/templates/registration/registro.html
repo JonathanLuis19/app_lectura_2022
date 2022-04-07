@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- para cargar todos los contenidos  -->
+    {% load static %}
+    <!-- Bootstrap -->
+    <link href="{% static 'estudiante/estudiante_lectura/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet">
+    <!-- Styles -->
+    <link href="{% static 'estudiante/css/gestion.css' %}" rel="stylesheet">
+    <!-- Styles login-->
+    <link href="{% static 'estudiante/css/login.css' %}" rel="stylesheet">
+    <title>Registro</title>
+
+</head>
+<body>
+    
+<div class="body"></div>
+<div class="grad"></div>
+<div class="header">
+    <div style="font-size: 320%;"><b style="color: whitesmoke;">  Formulario <br/>de Registro</b></div>
+</div><br>
+
+
+     
+    <div class="login">
+     
+       <form action="{% url 'registroUsuario' %}" method="POST">
+            {% csrf_token %}                 
+            <input type="text" class="" placeholder="Nombre"  name="first_name" onkeypress="txNombres()" pattern="[A-Za-z]+"><br>
+            <input type="text" placeholder="Apellido"  name="last_name"  onkeypress="txNombres()" pattern="[A-Za-z]+">
+            <input type="text" placeholder="Correo"  name="email">
+            <input type="password" placeholder="Contraseña" name="password"> 
+            <input type="password" placeholder="Reescriba su contraseña" name="password2"> <br/><br/>
+ 
+            {% if messages %}
+            <ul class="messages" style="color:white;">
+                {% for message in messages %}
+                <div >
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{message}}</li>
+                </div>
+                {% endfor %}
+            </ul>
+            {% endif %}
+                               
+            <input type="submit" class="btn btn-success btn-lg " value="Registrate">
+                   
+        </form>
+           <br/>
+        <a href="{% url 'login' %}" style="color: beige; " class="btn btn-danger" ><h6 >Cancelar</h6></a> 
+    </div>
+      
+<script>
+    function txNombres() {
+    if ((event.keyCode != 32) && (event.keyCode < 65) || (event.keyCode > 90) && (event.keyCode < 97) || (event.keyCode > 122))
+    event.returnValue = false;
+    }
+</script>
+</body>
+</html>

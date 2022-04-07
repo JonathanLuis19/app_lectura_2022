@@ -1,0 +1,90 @@
+{% extends "estudiante/base.html" %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introducción</title>
+
+</head>
+
+<body>
+ 
+    {% block content %}
+
+    
+
+    <div class="container-fluid">
+
+
+        <section class="search-and-user">
+            <form>
+               
+            </form>
+          <div class="admin-profile">
+            <span class="greeting">Hola {{user.get_full_name}} </span>
+            <a href="{% url 'logout' %}" class="btn btn-dark">Cerrar session</a>
+          </div>
+        </section>
+
+
+
+
+        <div class="row">
+            <main class="main col">
+                <div class="row justify-content-center align-content-center text-center">
+                    <div class="columna col-lg-6">
+                      
+                        <h2>La lectura</h2>  
+                       
+                    </div>
+    <!--visualizar las lecturas que esta disponibles-->
+    <div class="container">
+        
+        
+        <div style="float: right">
+            
+            
+        </div>
+
+
+        <div class="row" style="text-align: center;">
+
+            <h4> La lectura es un hábito de comunicación que permite desarrollar los
+                pensamientos cognitivos e interactivos de cualquier lector, el leer permite construir con facilidad nuevos conocimientos.
+            </h4>
+            <br/>
+            <div class="container" style="text-align: center;">
+             <img class="imgRedonda" src="{% static 'estudiante/img/img_introduction.png' %}"  style="width: 600px; height: 300px; border-radius: 10%; " />  
+            </div>
+             <br/><br/>
+            <h3 style="text-align: center;">“De los diversos instrumentos inventados por el hombre, 
+                el más asombroso es el libro; todos los demás son extensiones de su cuerpo…
+                 Sólo el libro es una extensión de la imaginación y la memoria”</h3>
+            
+        </div>
+        <h5 style="text-align: right;"> Jorge Luis Borges</h5>
+    </div>
+
+    <!-- fin del visualiza lecturas-->
+
+          
+
+
+                </div>                
+            </main>
+        
+        </div>
+    </div>
+
+
+
+
+    {% endblock %}
+
+</body>
+
+</html>
