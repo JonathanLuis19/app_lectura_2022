@@ -78,16 +78,16 @@ WSGI_APPLICATION = 'app_webLecturas.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'dbfomentar',
-        'USER':'jonathan',
-        'PASSWORD':'jonaLuis951.',
-        'HOST':'localhost',
-        'PORT':'3306'
-    }
-}
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.mysql',
+#        'NAME': 'dbfomentar',
+#        'USER':'jonathan',
+#        'PASSWORD':'jonaLuis951.',
+#        'HOST':'localhost',
+#        'PORT':'3306'
+#    }
+#}
 
 #DATABASES = {
 #    'default': {
@@ -100,16 +100,16 @@ DATABASES = {
 #    }
 #}
 
-#DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.mysql',
-#        'NAME': 'rootlecturas_awsapplecturas',
-#        'USER':'257018',
-#        'PASSWORD':'V^8[76fKWt4gEwt',
-#        'HOST':'mysql-rootlecturas.alwaysdata.net',
-#        'PORT':'3306'
-#    }
-#}
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'rootlecturas_habitolectura',
+        'USER':'257018',
+        'PASSWORD':'V^8[76fKWt4gEwt',
+        'HOST':'mysql-rootlecturas.alwaysdata.net',
+        'PORT':'3306'
+    }
+}
 
 
 
