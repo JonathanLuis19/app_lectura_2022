@@ -25,7 +25,7 @@ def send_register_new_user(first_name,last_name,email,username):
 def send_forget_password_mail(email,token):
 
     subject='Your forget password link'
-    message=f'Hola, click en el siguiente link para resetear tu contraseña http://127.0.0.1:8000/lecturas/change_password/{token}/'
+    message=f'Hola, click en el siguiente link para resetear tu contraseña https://applecturas.xyz/lecturas/change_password/{token}/'
     email_from= settings.EMAIL_HOST_USER 
     recipient_list=[email]
     send_mail(subject,message,email_from,recipient_list)
