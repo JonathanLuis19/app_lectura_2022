@@ -366,7 +366,7 @@ def cantidad_palabras_x_minuto(request):
         recognizer = sr.Recognizer()
 
         ''' grabando el sonido'''
-        with sr.Microphone(device_index=1) as source:
+        with sr.Microphone() as source:
             try:
                 print("Adjusting noise ")
                 recognizer.adjust_for_ambient_noise(source, duration=1)
