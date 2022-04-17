@@ -11,8 +11,6 @@ from fomentoLectura.models import Lectura,Profile,Comentario
 from fomentoLectura import analisis_lectura
 #import
 import speech_recognition as sr
-import pyaudio
-import wave
 import time
 import random
 import uuid 
@@ -399,6 +397,19 @@ def cantidad_palabras_x_minuto(request):
             return render(request,"estudiante/view_pdf.html",{"lectura":lectura,"comentarios":comentarios,"cantidad_palabras":cantidad_palabras}) 
     else: 
         return redirect("home")
+
+
+@login_required(login_url='login')
+def recolecionDatosMicrofono(request):
+    if request.method=='POST':
+        texto_base=request.POST.get('edad')
+        id_lectura=request.POST.get('id_lectura')
+        result = len(texto_base.split())
+        numero_palabras=str(result)+" palabras por minuto. "
+         #volver a cargar la pagina 
+        lectura=Lectura.objects.get(id=id_lectura)
+        comentarios= Comentario.objects.filter(lectura=id_lectura)
+        return render(request,"estudiante/view_pdf.html",{"lectura":lectura,"comentarios":comentarios,"cantidad_palabras":numero_palabras,"texto":texto_base}) 
 
 
 

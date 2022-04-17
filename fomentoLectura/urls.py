@@ -33,7 +33,8 @@ urlpatterns = [
     path('eliminar/<int:id>/<int:id_user>',views.eliminar_com, name='eliminar'),
     path('interpretacion/',views.analisis_texto,name="interpretacion"),
     path('instrucciones/',views.view_intrucciones,name="instrucciones"),
-     
+    #paso de datos microfono
+    path('datos/',views.recolecionDatosMicrofono,name="datos"),
 ]
 
 urlpatterns += [
