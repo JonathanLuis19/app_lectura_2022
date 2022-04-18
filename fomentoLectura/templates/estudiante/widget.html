@@ -34,6 +34,7 @@
             max-height: 0;
             opacity: 0;
           }
+          
     </style>
     
     <title>Lectura</title>
@@ -68,7 +69,7 @@
                     
                     <form name="miformulario">
                         <p>
-                            <button type="button" class="btn btn-success" name="btnEnviar" onClick="runSpeechRecognition()">Activar micrófono</button> 
+                            <button style="width: 150px;padding:6px;border-radius:40px;" type="button" class="btn btn-success" name="btnEnviar" onClick="runSpeechRecognition()">Activar micrófono</button> 
                         </p>
                     </form>
 
@@ -77,8 +78,8 @@
             <tr>
                 <th colspan="2"  > 
                         
-                    <span id="action"></span>
-                    <button class="h1--disabled btn btn-link" onclick="cargarPagina()" id="title1" >Presione Ok</button>      
+                    <span id="action" style="color:blue;"></span>
+                    <button class="h1--disabled btn btn-link" onclick="cargarPagina()" id="title1" >Ok</button>      
                     
                     <script>
                         function cargarPagina(){setInterval("location.reload()",1000);}
@@ -102,7 +103,7 @@
                         
                         <input type="hidden" value="{{lectura.id}}" name="id_lectura"> 
                         <input type="hidden" name="edad" id="contar_palabras" ><br>
-                        <input type="submit"  class="btn btn-success" value="Resultado" onclick="contar_palabras()">
+                        <input type="submit" style=" background-color:#700AB1;width: 150px;padding:6px;border-radius:40px;" class="btn btn-success" value="Resultado" onclick="contar_palabras()">
                         
                     </form>
 
@@ -120,8 +121,8 @@
         <tr>
             <th  colspan="2" class="text-left">Interpretación </th>
         </tr>
-        <td colspan="2" class="text-center"> 
-            <button id="btn-abrir-popup" class="btn-abrir-popup btn btn-info">Interpretación</button>
+        <td colspan="2" class="text-right"> 
+            <button id="btn-abrir-popup" style="width: 150px;padding:6px;border-radius:40px;" class="btn-abrir-popup btn btn-info">Interpretación</button>
         </td>
         <tr>
             <td >Resultado: </td>
@@ -261,16 +262,17 @@
             
             
             recognition.onspeechend = function() {
-                action.innerHTML = "<small>Mantuvo un tiempo sin hablar, por lo cual la grabación termino...</small>";
+                action.innerHTML = "<small>La grabación</br> se a terminada presione</br> ...</small>";
                 miformulario.btnEnviar.disabled = false;
                 miformulario.btnEnviar.value = "Enviar";
             };
     
         
             recognition.onerror = function() {      
-                action.innerHTML = "<small>No se detectó ningún habla. Intentar otra vez...</small>";
+                action.innerHTML = "<small>No se detectó ningún habla.</br> Intentar otra vez...</small>";
                 setInterval("location.reload()",5000);
             };
+
               
                 // This runs when the speech recognition service returns result
                 recognition.onresult = function(event) {
