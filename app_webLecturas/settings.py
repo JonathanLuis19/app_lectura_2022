@@ -167,8 +167,8 @@ EMAIL_BACKEND="django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST="smtp.gmail.com"
 EMAIL_USE_TLS=True
 EMAIL_PORT=587
-EMAIL_HOST_USER="ad.lectura.2022@gmail.com"
-EMAIL_HOST_PASSWORD="lecturas.A.UTN2022"
+EMAIL_HOST_USER="habitolectura686@gmail.com"
+EMAIL_HOST_PASSWORD="lectura.utn.2022FICA"
 
 
 
