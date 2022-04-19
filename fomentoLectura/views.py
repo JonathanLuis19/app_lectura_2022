@@ -431,8 +431,9 @@ def analisis_texto(request):
 
                 # Introducir la interfaz de extracción de palabras clave TF-IDF
                 tfidf = analyse.extract_tags
+                p_excluidas="una,a,uno,el,El,en,del,es,pero,lo,por,unos,y,en,un,de,los,ellos,ellas,unas,yes,tu,nosotros,vosotros,ello,ellas,la,que,con,sus"
                 # Utilice un conjunto personalizado de palabras de parada
-                analyse.set_stop_words("fomentoLectura\stop_words.txt")
+                #analyse.set_stop_words("fomentoLectura/stop_word.txt")
                 # Texto original
                 text_original = text_base
                 # Extracción de palabras clave basada en el algoritmo TF-IDF
