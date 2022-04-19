@@ -35,6 +35,8 @@ urlpatterns = [
     path('instrucciones/',views.view_intrucciones,name="instrucciones"),
     #paso de datos microfono
     path('datos/',views.recolecionDatosMicrofono,name="datos"),
+    #cargar de nuevo la pagina en caso de error
+    path('new/',views.view_volver_cargar_pagina,name="volver_cargar_pag"),
 ]
 urlpatterns +=[
     re_path(r'^media/(?P<path>.*)$',serve,{

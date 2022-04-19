@@ -514,3 +514,15 @@ def analisis_texto(request):
 
 def view_intrucciones(request):
     return render (request,"estudiante/intrucciones.html")
+
+def view_volver_cargar_pagina(request):
+    if request.method=='POST':
+        id_lectura=request.POST.get('id_lectura')
+         #volver a cargar la pagina 
+        lectura=Lectura.objects.get(id=id_lectura)
+        comentarios= Comentario.objects.filter(lectura=id_lectura)
+        return render(request,"estudiante/view_pdf.html",{"lectura":lectura,"comentarios":comentarios}) 
+
+
+
+

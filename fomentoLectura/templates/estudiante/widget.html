@@ -79,8 +79,11 @@
                 <th colspan="2"  > 
                         
                     <span id="action" style="color:blue;"></span>
-                    <button class="h1--disabled btn btn-link" onclick="cargarPagina()" id="title1" >Ok</button>      
-                    
+                    <form action="{% url 'volver_cargar_pag' %}" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" value="{{lectura.id}}" name="id_lectura"> 
+                        <button class="h1--disabled btn btn-link" id="title1" >Ok</button>      
+                    </form>
                     <script>
                         function cargarPagina(){setInterval("location.reload()",1000);}
                     </script>
